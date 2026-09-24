@@ -38,7 +38,7 @@ class StudyFlowUiTest {
         compose.waitUntil(10_000) { compose.onAllNodesWithText("Практика по Kotlin").fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText("Практика по Kotlin").assertIsDisplayed()
         capture("studyflow-home.png")
-        compose.onNodeWithText("Новая задача").performClick()
+        compose.onNodeWithTag("add-task").assertExists().performClick()
         compose.onNodeWithText("Что нужно сделать?").performTextInput("Тестовая задача")
         compose.onNodeWithText("Предмет (необязательно)").performTextInput("JUnit")
         capture("studyflow-editor.png")
@@ -53,7 +53,7 @@ class StudyFlowUiTest {
     }
     private fun capture(name: String) {
         compose.waitForIdle()
-        val bitmap = compose.onRoot().captureToImage().asAndroidBitmap()
+        val bitmap = requireNotNull(InstrumentationRegistry.getInstrumentation().uiAutomation.takeScreenshot())
         val file = File(InstrumentationRegistry.getInstrumentation().targetContext.filesDir, name)
         file.outputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
     }

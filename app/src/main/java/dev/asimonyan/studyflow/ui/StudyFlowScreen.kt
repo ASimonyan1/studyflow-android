@@ -13,6 +13,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
@@ -50,7 +51,7 @@ fun StudyFlowScreen(model: TaskViewModel) {
                 modifier = Modifier.padding(end = 16.dp)) }) },
         snackbarHost = { SnackbarHost(snackbar) },
         floatingActionButton = {
-            ExtendedFloatingActionButton(onClick = { editingId = 0L },
+            ExtendedFloatingActionButton(modifier = Modifier.testTag("add-task"), onClick = { editingId = 0L },
                 icon = { Icon(Icons.Outlined.Add, contentDescription = null) }, text = { Text("Новая задача") })
         },
     ) { padding ->

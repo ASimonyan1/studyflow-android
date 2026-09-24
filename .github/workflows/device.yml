@@ -31,11 +31,7 @@ jobs:
           arch: x86_64
           profile: pixel_2
           disable-animations: true
-          script: |
-            gradle connectedDebugAndroidTest --no-daemon
-            mkdir -p screenshots
-            adb exec-out run-as dev.asimonyan.studyflow cat files/studyflow-home.png > screenshots/studyflow-home.png
-            adb exec-out run-as dev.asimonyan.studyflow cat files/studyflow-editor.png > screenshots/studyflow-editor.png
+          script: bash .github/run-device-tests.sh
       - uses: actions/upload-artifact@v4
         if: always()
         with:

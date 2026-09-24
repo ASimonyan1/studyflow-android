@@ -1,10 +1,11 @@
 package dev.asimonyan.studyflow
 
+import android.content.ContentValues
+import android.provider.MediaStore
 import android.graphics.Bitmap
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.asAndroidBitmap
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.room.Room
@@ -14,7 +15,6 @@ import dev.asimonyan.studyflow.data.*
 import dev.asimonyan.studyflow.ui.*
 import kotlinx.coroutines.runBlocking
 import org.junit.*
-import java.io.File
 import java.time.LocalDate
 
 class StudyFlowUiTest {
@@ -54,7 +54,13 @@ class StudyFlowUiTest {
     private fun capture(name: String) {
         compose.waitForIdle()
         val bitmap = requireNotNull(InstrumentationRegistry.getInstrumentation().uiAutomation.takeScreenshot())
-        val file = File(InstrumentationRegistry.getInstrumentation().targetContext.filesDir, name)
-        file.outputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
+        val resolver = InstrumentationRegistry.getInstrumentation().targetContext.contentResolver
+        val values = ContentValues().apply {
+            put(MediaStore.Downloads.DISPLAY_NAME, name)
+            put(MediaStore.Downloads.MIME_TYPE, "image/png")
+            put(MediaStore.Downloads.RELATIVE_PATH, "Download/StudyFlow")
+        }
+        val uri = requireNotNull(resolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, values))
+        requireNotNull(resolver.openOutputStream(uri)).use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
     }
 }

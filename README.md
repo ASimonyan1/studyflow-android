@@ -6,6 +6,16 @@
 
 Небольшой Android-планировщик учебных задач. Предметы, сроки и прогресс в одном месте; данные хранятся на устройстве, регистрация и интернет не нужны.
 
+## Приложение в работе
+
+<p align="center">
+  <img src="docs/screenshots/studyflow-home.png" width="310" alt="StudyFlow: список учебных задач, сроки, поиск и фильтры" />
+  &nbsp;
+  <img src="docs/screenshots/studyflow-editor.png" width="310" alt="StudyFlow: редактор новой задачи" />
+</p>
+
+Скриншоты реального Compose-интерфейса на эмуляторе Pixel 2 / Android 10, полученные в автоматическом тесте с демонстрационными данными. [Проверка и исходные изображения](https://github.com/ASimonyan1/studyflow-android/actions/runs/36068768643).
+
 ## Возможности
 
 - Создание и редактирование задачи: название, предмет, необязательный срок.
@@ -63,7 +73,7 @@ CI запускает сборку debug APK, Android Lint и JVM-тесты п�
 ./gradlew connectedDebugAndroidTest
 ```
 
-Отдельный workflow **Device tests and screenshots** запускает тесты на эмуляторе Android 10 (API 29). UI-тест проверяет создание задачи, поиск и перенос в «Готово»; тест базы проверяет операции Room. [Успешный запуск](https://github.com/ASimonyan1/studyflow-android/actions/runs/36068146859).
+Отдельный workflow **Device tests and screenshots** запускает тесты на эмуляторе Android 10 (API 29). UI-тест проверяет создание задачи, поиск и перенос в «Готово»; тест базы проверяет операции Room. [Успешный запуск](https://github.com/ASimonyan1/studyflow-android/actions/runs/36068768643).
 
 Пошаговая ручная проверка: [docs/TESTING.md](docs/TESTING.md).
 

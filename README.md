@@ -1,3 +1,5 @@
+![StudyFlow Android](docs/cover.svg)
+
 # StudyFlow · Android
 
 [![Android CI](https://github.com/ASimonyan1/studyflow-android/actions/workflows/android.yml/badge.svg)](https://github.com/ASimonyan1/studyflow-android/actions/workflows/android.yml)
